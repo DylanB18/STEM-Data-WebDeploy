@@ -4,5 +4,4 @@ pandas
 altair
 openpyxl
 matplotlib
-hashlib
 math
