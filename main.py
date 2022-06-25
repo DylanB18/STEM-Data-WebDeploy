@@ -3,7 +3,7 @@ import numpy as np
 import pandas as pd
 import altair as alt
 import openpyxl
-from functions import calcFreeLunch, loadSTEMData, loadDOEData, loadGraphData, TitleOne, Magnet, AllSchools, calcRetentionDisp, calcCRetentionDisp, calcRace, introCourses, yearFilter, introCourseRace, nonIntroCourses, hash, calcBlackWomen, martin, t1Filter
+from functions import calcFreeLunch, loadSTEMData, loadDOEData, loadGraphData, TitleOne, Magnet, AllSchools, calcRetentionDisp, calcCRetentionDisp, calcRace, introCourses, yearFilter, introCourseRace, nonIntroCourses, calcBlackWomen, martin, t1Filter
 
 #App Config
 st.set_page_config(page_title="Broward STEM Data Analysis",
@@ -203,36 +203,3 @@ else:
 	st.text("Non-intro courses had an average sRatio of " + nonIntroCourses(data))
 
 	#st.text("Mr. Martin's CS Discoveries class is " + martin(data) + "% male.")
-
-	#Data export
-	st.subheader("Export Data")
-
-	SD_CSV = st.button("Student Data (CSV)")
-	SD_EX = st.button("Student Data (Excel)")
-
-	ASD_CSV = st.button("Anonymized Student Data (CSV)")
-	ASD_EX = st.button("Anonymized Student Data (Excel)")
-
-	GD_CSV = st.button("Graph Data (CSV)")
-	GD_EX = st.button("Graph Data (Excel)")
-
-	if(SD_CSV):
-		data.to_csv("Exports/Student_Data.csv")
-	elif(SD_EX):
-		data.to_excel("Exports/Student_Data.xlsx")
-	elif(ASD_CSV):
-		a_data = data
-		hash(a_data,a_data,'Student Number','School Year')
-		a_data['Student Number'] = a_data['hash_Student NumberSchool Year']
-		a_data.drop('hash_Student NumberSchool Year', 1, inplace=True)
-		a_data.to_csv("Exports/Anon_Student_Data.csv")
-	elif(ASD_EX):
-		a_data = data
-		hash(a_data,a_data,'Student Number','School Year')
-		a_data['Student Number'] = a_data['hash_Student NumberSchool Year']
-		a_data.drop('hash_Student NumberSchool Year', 1, inplace=True)
-		a_data.to_excel("Exports/Anon_Student_Data.xlsx")
-	elif(GD_CSV):
-		graph_data.to_csv("Exports/Graph_Data.csv")
-	elif(GD_EX):
-		graph_data.to_excel("Exports/Graph_Data.xlsx")
