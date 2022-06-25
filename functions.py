@@ -2,7 +2,6 @@ import streamlit as st
 import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
-import hashlib
 from math import nan
 
 # Config
@@ -253,11 +252,6 @@ def t1Filter(data, DOE, titleOneMode):
 		return data[data['School'].isin(nTSchools)]
 	else:
 		return data
-
-#Code courtesy of Heang Arngmaneekul
-def hash(sourcedf,destinationdf,*column):
-    columnName = ''
-    destinationdf['hash_'+columnName.join(column)] = pd.DataFrame(sourcedf[list(column)].values.sum(axis=1))[0].astype(str).str.encode('utf-8').apply(lambda x: (hashlib.sha224(x).hexdigest().upper()))
 
 #Loading Functions
 @st.cache
