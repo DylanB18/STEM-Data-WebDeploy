@@ -4,4 +4,3 @@ pandas
 altair
 openpyxl
 matplotlib
-math
