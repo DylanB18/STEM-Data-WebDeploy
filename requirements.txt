@@ -3,6 +3,6 @@ numpy
 pandas
 altair
 openpyxl
-matplotlib.pyplot
+matplotlib
 hashlib
-math.nan
+math
