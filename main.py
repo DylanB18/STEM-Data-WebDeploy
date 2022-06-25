@@ -51,7 +51,6 @@ else:
 	graphs = st.sidebar.markdown("[Graphs](#graphs)")
 	corr = st.sidebar.markdown("[Correlations](#correlations)")
 	schoolTA = st.sidebar.markdown("[School Type Analysis](#school-type-analysis)")
-	export = st.sidebar.markdown("[Export Data](#export-data)")
 
 	#Sidebar width hack
 	st.markdown(
@@ -122,7 +121,8 @@ else:
 		tooltip=['School Name', '% Free Lunch', 'sRatio'])
 
 	lunchSexGraph + lunchSexGraph.transform_regression('% Free Lunch', 'sRatio', method="poly").mark_line()
-
+	st.text("How much does a school's average socioeconomic status correlate with the gender diversity of their STEM program?")
+	
 	st.text("% Black vs. sRatio")
 	raceSexGraph = alt.Chart(graph_data).mark_circle().encode(
 		x='% Black',
@@ -130,6 +130,7 @@ else:
 		tooltip=['School Name', '% Black', 'sRatio'])
 
 	raceSexGraph + raceSexGraph.transform_regression('% Black', 'sRatio', method="poly").mark_line()
+	st.text("How much does a school's racial diversity correlate with the gender diversity of their STEM program?")
 
 	st.text("Free Lunch vs. Courses Offered")
 	lunchCourseGraph = alt.Chart(graph_data).mark_circle().encode(
@@ -138,6 +139,7 @@ else:
 		tooltip=['School Name', '% Free Lunch', 'Courses Offered'])
 
 	lunchCourseGraph + lunchCourseGraph.transform_regression('% Free Lunch', 'Courses Offered', method="poly").mark_line()
+	st.text("Do socioeconomically disadvantaged schools have less STEM classes?")
 
 	st.text("% Black vs. Courses Offered")
 	raceCourseGraph = alt.Chart(graph_data).mark_circle().encode(
@@ -146,6 +148,7 @@ else:
 		tooltip=['School Name', '% Black', 'Courses Offered'])
 
 	raceCourseGraph + raceCourseGraph.transform_regression('% Black', 'Courses Offered', method="poly").mark_line()
+	st.text("Do racially diverse schools have less STEM classes, or more?")
 
 	#Remove Magnets from graph data to see if they are a source of noise
 	graph_data_nm = graph_data.loc[graph_data['Magnet School'] == "No"]
@@ -165,6 +168,7 @@ else:
 		tooltip=['School Name', 'Total Students', 'sRatio'])
 
 	sizeSexRatio + sizeSexRatio.transform_regression('Total Students', 'sRatio', method="linear").mark_line()
+	st.text("Do larger schools have more or less equal gender representation?")
 
 	#Output variable correlations
 	st.subheader("Correlations")
